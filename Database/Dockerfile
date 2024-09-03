@@ -1,7 +1,9 @@
 FROM python:3.12-slim
 
 # install sqlite
-RUN apt-get update && apt-get install -y sqlite3
+RUN apt-get update && \
+    apt-get install -y sqlite3 && \
+    rm -rf /var/lib/apt/lists/*
 
 #set working directory
 WORKDIR /app
