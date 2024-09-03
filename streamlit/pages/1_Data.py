@@ -1,10 +1,12 @@
-import streamlit as st
+import re
+
 import requests
 import pandas as pd
-import re
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import nltk
+
+import streamlit as st
 
 nltk.download("punkt_tab")
 nltk.download("stopwords")
@@ -105,10 +107,10 @@ def housing(df):
     return
 
 
-def titanic(df):
+def titanic(df1):
 
     st.subheader("Queried Data")
-    st.dataframe(df)
+    st.dataframe(df1)
     st.write(
         """
     ---       
@@ -186,22 +188,21 @@ Overall the insights that I gained from this analysis were:
 **Negatively** impacted odds of survival. These conclusions back up most of what we already knew about the sinking of the Titanic.
 """
     )
-    return
 
 
 def preprocessor(text):
     text = re.sub("<[^>]*>", "", text)
-    emoticons = re.findall("(?::|;|=)(?:-)?(?:\)|\(|D|P)", text)
-    text = re.sub("[\W]+", " ", text.lower()) + " ".join(emoticons).replace("-", "")
+    emoticons = re.findall(r"(?::|;|=)(?:-)?(?:\)|\(|D|P)", text)
+    text = re.sub(r"[\W]+", " ", text.lower()) + " ".join(emoticons).replace("-", "")
 
     return text
 
 
-def movies(df):
+def movies(df2):
     st.write("**IMDB Dataframe**")
-    st.dataframe(df)
+    st.dataframe(df2)
     st.divider()
-    movie_1 = df.iloc[1, 0]
+    movie_1 = df2.iloc[1, 0]
     st.text_area("Unprocessed Review", movie_1, height=200)
     processed_review = preprocessor(movie_1)
     st.text_area("Cleaned Review", processed_review, height=200)
@@ -246,7 +247,6 @@ I used two models:
 - There aren't really any *insights* to take away from this dataset, **but**, we do now have a cool model that can analyze the sentiment of any text passed to it!
 """
     )
-    return
 
 
 def mnist():
@@ -338,7 +338,7 @@ elif data_option == "MNIST":
 query = st.text_area(label="**Enter your SQL query here:**", value=query)
 
 if st.button("Submit"):
-    response = requests.post("http://flask_route:5001/query", json={"query": query})
+    response = requests.post("http://flask_route:5001/query", json={"query": query}, timeout=10)
     if response.status_code == 200:
         try:
             result = response.json()

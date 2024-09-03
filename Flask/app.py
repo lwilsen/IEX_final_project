@@ -2,6 +2,7 @@ import sqlite3
 import pickle
 
 from flask import Flask, request, jsonify
+
 from flask_cors import CORS
 import tensorflow as tf
 import numpy as np
@@ -29,11 +30,11 @@ def home():
 # Build Query tool (not including mnist for now)
 
 
-def query_database(request):
+def query_database(qery):
     try:
         conn = sqlite3.connect("/app/final_project.db")
         cursor = conn.cursor()
-        cursor.execute(request)
+        cursor.execute(qery)
         columns = [description[0] for description in cursor.description]
         data = cursor.fetchall()
         conn.close()
