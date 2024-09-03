@@ -4,9 +4,8 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-RUN python -m nltk.downloader averaged_perceptron_tagger
+RUN pip install --no-cache-dir -r requirements.txt && \
+    python -m nltk.downloader averaged_perceptron_tagger
 
 EXPOSE 5001
 
