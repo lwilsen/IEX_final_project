@@ -104,7 +104,6 @@ def housing(df):
         - Ex. According to the model, **having central air** corresponds to an **increase in price by 0.243 hundred thousand dollars ($24,300)**.
     """
     )
-    
 
 
 def titanic(df1):
@@ -318,8 +317,6 @@ I used a Convolutional Neural Network (CNN) to classify the images contained in 
         caption="Model Performance",
     )
 
-    
-
 
 data_option = st.radio(
     "Select Data:", ("Housing", "Titanic", "Movie", "MNIST"), key="data_option"
@@ -338,7 +335,9 @@ elif data_option == "MNIST":
 query = st.text_area(label="**Enter your SQL query here:**", value=query)
 
 if st.button("Submit"):
-    response = requests.post("http://flask_route:5001/query", json={"query": query}, timeout=10)
+    response = requests.post(
+        "http://flask_route:5001/query", json={"query": query}, timeout=10
+    )
     if response.status_code == 200:
         try:
             result = response.json()

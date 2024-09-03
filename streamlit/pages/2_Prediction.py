@@ -35,13 +35,14 @@ def image_show(image):
     plt.grid(False)
     plt.show()
 
+
 def class_to_one_hot(Class):
-        if Class == 1:
-            return [1,0,0]
-        if Class == 2:
-            return [0,1,0]
-        return [0,0,1]
-        
+    if Class == 1:
+        return [1, 0, 0]
+    if Class == 2:
+        return [0, 1, 0]
+    return [0, 0, 1]
+
 
 if table_option == "Titanic":
     st.write("Would you have survived on the titanic?")
@@ -81,7 +82,7 @@ if table_option == "Titanic":
         response = requests.post(
             "http://flask_route:5001/predict_titanic",
             json=user_input_features_df.to_dict(orient="records")[0],
-            timeout=10
+            timeout=10,
         )
         result = response.json()
         result_df = pd.DataFrame([result])
@@ -136,8 +137,7 @@ elif table_option == "Housing":
 
     if st.button("Predict"):
         response = requests.post(
-            "http://flask_route:5001/predict_housing", json=user_input,
-            timeout=10
+            "http://flask_route:5001/predict_housing", json=user_input, timeout=10
         )
         result = response.json()
         result_df = pd.DataFrame([result])
@@ -160,8 +160,7 @@ elif table_option == "Movie":
     text = st.text_area("Enter a sentence for sentiment testing:", value=text)
     if st.button("Predict"):
         response = requests.post(
-            "http://flask_route:5001/predict_sentiment", json={"text": text},
-            timeout=15
+            "http://flask_route:5001/predict_sentiment", json={"text": text}, timeout=15
         )
         result = response.json()
         sentiment = result["sentiment"]
@@ -201,8 +200,9 @@ elif table_option == "MNIST":
 
             image_data = np.array(processed_img).tolist()
             response = requests.post(
-                "http://flask_route:5001/predict_mnist", json={"image_data": image_data},
-                timeout=15
+                "http://flask_route:5001/predict_mnist",
+                json={"image_data": image_data},
+                timeout=15,
             )
             result = response.json()
             predicted_digit = result["digit"]
