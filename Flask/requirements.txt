@@ -1,0 +1,15 @@
+Flask
+flask-cors
+#pickle
+tensorflow
+numpy
+nltk
+#wordnet
+#WordNetLemmatizer
+#PorterStemmer
+#sqlite3
+pandas
+scikit-learn
+#Ridge
+#train_test_split
+#TfidfVectorizer

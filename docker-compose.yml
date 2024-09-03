@@ -1,0 +1,48 @@
+services:
+  database:
+    build:
+      context: ./Database
+      dockerfile: Dockerfile
+    container_name: full_database
+    volumes:
+      - ./Database/final_project.db:/app/final_project.db
+
+  backend:
+    build:
+      context: ./Flask
+      dockerfile: Dockerfile
+    container_name: flask_route
+    ports:
+      - 5001:5001
+    depends_on:
+      - database
+    environment:
+      - FLASK_APP=app.py  # Set the FLASK_APP environment variable here
+      - FLASK_RUN_PORT=5001
+      #- FLASK_ENV=development  # Optional: Set the Flask environment to development
+    volumes:
+      - ./Flask:/app
+      - ./Database/final_project.db:/app/final_project.db
+
+  frontend:
+    build:
+      context: ./streamlit
+      dockerfile: Dockerfile
+    container_name: streamlit_app
+    ports:
+      - 8001:8001
+    develop:
+      watch:
+      - action: sync
+        path: ./streamlit/Home.py
+        target: /app/streamlit/Home.py
+        command: docker-compose restart streamlit_app
+      - action: sync
+        path: ./pages
+        target: /app/streamlit/pages
+        command: docker-compose restart streamlit_app
+    depends_on:
+      - backend
+    volumes:
+      - ./streamlit:/app
+      - ./Database/final_project.db:/app/final_project.db
