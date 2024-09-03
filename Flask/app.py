@@ -1,13 +1,14 @@
-from flask import Flask, request, jsonify, render_template
-from flask_cors import CORS
+import sqlite3
 import pickle
+
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import tensorflow as tf
 import numpy as np
 from nltk.tokenize import word_tokenize
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 import nltk
-import sqlite3
 import pandas as pd
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
@@ -28,11 +29,11 @@ def home():
 # Build Query tool (not including mnist for now)
 
 
-def query_database(query):
+def query_database(request):
     try:
         conn = sqlite3.connect("/app/final_project.db")
         cursor = conn.cursor()
-        cursor.execute(query)
+        cursor.execute(request)
         columns = [description[0] for description in cursor.description]
         data = cursor.fetchall()
         conn.close()
@@ -92,8 +93,7 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN
     if treebank_tag.startswith("R"):
         return wordnet.ADV
-    else:
-        return wordnet.NOUN
+    return wordnet.NOUN
 
 
 def preprocess_text(text):
@@ -122,7 +122,7 @@ mnist_model = tf.keras.models.load_model("Models/mnist_model.keras")
 def query():
     if request.method == "GET":
         return "THIS WILL BE WHERE QUERIES ARE SENT"
-    elif request.method == "POST":
+    if request.method == "POST":
         try:
             query_response = request.json.get("query")
             if not query_response:
