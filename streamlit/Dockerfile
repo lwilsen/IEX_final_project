@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+RUN pip install --no-cache-dir -r requirements.txt && \
+    apt-get update && apt-get install ffmpeg libsm6 libxext6  -y && \
+    rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8001
 
