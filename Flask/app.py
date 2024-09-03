@@ -27,7 +27,6 @@ def home():
 # Build Query tool (not including mnist for now)
 
 def query_database(query):
-    #conn = None  # This might be causing problems
     try:
         conn = sqlite3.connect('/app/final_project.db')
         cursor = conn.cursor()
@@ -38,9 +37,6 @@ def query_database(query):
         return {"Columns": columns, "Data": data}
     except sqlite3.Error as e:
         return {"error": str(e)}
-    """finally:
-        if conn:
-            """
 
 # Prediction Functions/models
 
@@ -66,7 +62,7 @@ y_log = housing_df[log_target]
 
 Xl_train, Xl_test,yl_train,yl_test = train_test_split(X_log,y_log,test_size=0.3,random_state=123)
 
-ridge = Ridge(alpha=1.0)
+ridge = Ridge(alpha=1.0, random_state=42)
 ridge.fit(Xl_train,yl_train)
 
 porter = PorterStemmer()
@@ -106,10 +102,7 @@ def preprocess_text(text):
         processed_tokens.append(stemmed_word)
     return ' '.join(processed_tokens)
 
-"""text_clf = Pipeline([('vect', nlp_vect),
-                     ('clf', LogisticRegression(solver='liblinear')),])
-best_params = {'clf__C': 10.0, 'clf__penalty': 'l2', 'vect__ngram_range': (1, 1), 'vect__stop_words': None, 'vect__tokenizer': tokenizer_porter}
-"""
+
 nlp_mod.set_params(vect__tokenizer = tokenizer_porter)
 
 ### MNIST model
@@ -138,7 +131,6 @@ def predict_titanic():
     data = request.json
     df = pd.DataFrame([data])
     prediction = svc_pipe.predict(df)
-    #survival_prob = svc_pipe.predict_proba(df)[0][1]
     return jsonify({'Survived': int(prediction)})
 
 @app.route('/predict_housing', methods = ["POST"])
