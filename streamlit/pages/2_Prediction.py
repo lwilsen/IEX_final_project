@@ -1,4 +1,3 @@
-import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 import numpy as np
 import pandas as pd
@@ -6,6 +5,8 @@ import requests
 import cv2
 import matplotlib.pyplot as plt
 import nltk
+
+import streamlit as st
 
 nltk.download("averaged_perceptron_tagger_eng")
 

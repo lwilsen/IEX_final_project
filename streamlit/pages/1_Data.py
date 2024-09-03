@@ -104,7 +104,7 @@ def housing(df):
         - Ex. According to the model, **having central air** corresponds to an **increase in price by 0.243 hundred thousand dollars ($24,300)**.
     """
     )
-    return
+    
 
 
 def titanic(df1):
@@ -318,7 +318,7 @@ I used a Convolutional Neural Network (CNN) to classify the images contained in 
         caption="Model Performance",
     )
 
-    return
+    
 
 
 data_option = st.radio(
@@ -345,13 +345,13 @@ if st.button("Submit"):
 
             data = result.get("Data", [])
             columns = result.get("Columns", [])
-            df = pd.DataFrame(data, columns=columns)
+            dataframe = pd.DataFrame(data, columns=columns)
             if data_option == "Housing":
-                housing(df)
+                housing(dataframe)
             elif data_option == "Titanic":
-                titanic(df)
+                titanic(dataframe)
             elif data_option == "Movie":
-                movies(df)
+                movies(dataframe)
 
         except requests.exceptions.JSONDecodeError:
             st.error("Error: The response is not in JSON format.")
