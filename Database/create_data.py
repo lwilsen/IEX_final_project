@@ -14,6 +14,7 @@ columns = [
 ]
 housing_df = pd.read_csv("Data_files/AmesHousing.txt", sep="\t", usecols=columns)
 movie_df = pd.read_csv("Data_files/movie_data.csv")
+print("csv's read")
 
 
 # create connection to database
@@ -25,7 +26,7 @@ try:
     movie_df.to_sql("movies", conn, if_exists="replace", index=False)
 
 except sqlite3.Error as e:
-    print(e)
+    print("Error:", e)
 
 finally:
     conn.close()
