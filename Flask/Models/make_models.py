@@ -1,16 +1,19 @@
+import pickle
+
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import Ridge
-import numpy as np
-import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+
 from nltk.stem.porter import PorterStemmer
 from joblib import Memory
+
+from final_project.Flask.utils import LogTransformer
 
 memory = Memory(location="./cache")
 
 # Housing regression model creation
-from final_project.Flask.utils import LogTransformer
+
 
 ridge_pipeline = Pipeline(
     [

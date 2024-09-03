@@ -11,7 +11,6 @@ import sqlite3
 import pandas as pd
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
-from utils import tokenizer_porter
 
 nltk.download("punkt_tab")
 nltk.download("averaged_perceptron_tagger_eng")
@@ -87,11 +86,11 @@ nlp_mod = pickle.load(open("Models/nlp_model.pkl", "rb"))
 def get_wordnet_pos(treebank_tag):
     if treebank_tag.startswith("J"):
         return wordnet.ADJ
-    elif treebank_tag.startswith("V"):
+    if treebank_tag.startswith("V"):
         return wordnet.VERB
-    elif treebank_tag.startswith("N"):
+    if treebank_tag.startswith("N"):
         return wordnet.NOUN
-    elif treebank_tag.startswith("R"):
+    if treebank_tag.startswith("R"):
         return wordnet.ADV
     else:
         return wordnet.NOUN
@@ -125,10 +124,10 @@ def query():
         return "THIS WILL BE WHERE QUERIES ARE SENT"
     elif request.method == "POST":
         try:
-            query = request.json.get("query")
-            if not query:
+            query_response = request.json.get("query")
+            if not query_response:
                 return jsonify({"error": "No Query Provided"}), 400
-            data = query_database(query)
+            data = query_database(query_response)
             return jsonify(data)
         except Exception as e:
             return jsonify({"error": str(e)}), 500
