@@ -5,7 +5,8 @@ st.write("Luke Wilsen")
 
 st.divider()
 
-st.markdown("""
+st.markdown(
+    """
 ### Overview
 This app demonstrates various data science and machine learning techniques applied to multiple datasets. Below is a brief summary of each dataset, and some practical applications.
 
@@ -20,5 +21,5 @@ This app demonstrates various data science and machine learning techniques appli
 - **Ames Housing**: House price of a home in Ames, Iowa, between 2006 and 2010 is predicted, using Quality, Condition, Exterior Quality, Basement SF, Central Air, Living Area, and Number of Fireplaces.
 - **IMDB Movie Reviews**: The sentiment of a typed sentence is classified as positive or negative.
 - **MNIST Digits**: You can draw a digit 0-9 and the model will attempt to recognize the digit.
-""")
-
+"""
+)
