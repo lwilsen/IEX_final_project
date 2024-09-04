@@ -19,7 +19,7 @@ nltk.download("averaged_perceptron_tagger_eng")
 nltk.download("wordnet")
 
 app = Flask(__name__)
-CORS(app)
+CORS(app) #Need to research more about CORS (and how to use it properly)
 
 
 @app.route("/")
@@ -119,10 +119,8 @@ mnist_model = tf.keras.models.load_model("Models/mnist_model.keras")
 # Functions that recieve POST requests
 
 
-@app.route("/query", methods=["GET", "POST"])
+@app.route("/query", methods=["POST"])
 def query():
-    if request.method == "GET":
-        return "THIS WILL BE WHERE QUERIES ARE SENT"
     if request.method == "POST":
         try:
             query_response = request.json.get("query")

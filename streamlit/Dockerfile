@@ -1,8 +1,12 @@
 FROM python:3.12-slim 
 
-WORKDIR /app
+RUN useradd -m nonrootuser
 
-COPY . /app
+USER nonrootuser
+
+WORKDIR /home/nonrootuser
+
+COPY . /home/nonrootuser/app
 
 RUN pip install --no-cache-dir -r requirements.txt && \
     apt-get update && apt-get install ffmpeg libsm6 libxext6  -y && \
