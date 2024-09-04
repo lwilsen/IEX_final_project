@@ -94,8 +94,7 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN
     if treebank_tag.startswith("R"):
         return wordnet.ADV
-    else:
-        return wordnet.NOUN
+    return wordnet.NOUN
 
 
 
@@ -123,15 +122,14 @@ mnist_model = tf.keras.models.load_model("Models/mnist_model.keras")
 
 @app.route("/query", methods=["POST"])
 def query():
-    if request.method == "POST":
-        try:
-            query_response = request.json.get("query")
-            if not query_response:
-                return jsonify({"error": "No Query Provided"}), 400
-            data = query_database(query_response)
-            return jsonify(data)
-        except Exception as e:
-            return jsonify({"error": str(e)}), 500
+    try:
+        query_response = request.json.get("query")
+        if not query_response:
+            return jsonify({"error": "No Query Provided"}), 400
+        data = query_database(query_response)
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/predict_titanic", methods=["POST"])
