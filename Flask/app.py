@@ -19,7 +19,7 @@ nltk.download("averaged_perceptron_tagger_eng")
 nltk.download("wordnet")
 
 app = Flask(__name__)
-CORS(app) #Need to research more about CORS (and how to use it properly)
+CORS(app)  # Need to research more about CORS (and how to use it properly)
 
 
 @app.route("/")
@@ -94,7 +94,9 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN
     if treebank_tag.startswith("R"):
         return wordnet.ADV
-    return wordnet.NOUN
+    else:
+        return wordnet.NOUN
+
 
 
 def preprocess_text(text):
