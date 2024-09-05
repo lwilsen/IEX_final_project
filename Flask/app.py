@@ -130,7 +130,7 @@ def query():
             return jsonify({"error": "No Query Provided"}), 400
         data = query_database(query_response)
         return jsonify(data)
-    except Exception as e:
+    except sqlite3.Error as e:
         return jsonify({"error": str(e)}), 500
 
 
