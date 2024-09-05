@@ -49,7 +49,9 @@ def query_database(qery):
 ## Import Models
 
 ### Best for Titanic
-svc_pipe = pickle.load(open("Models/svc_pipeline.pkl", "rb"))
+
+with open("Models/svc_pipeline.pkl", "rb") as mod:
+    svc_pipe = pickle.load(mod)
 
 ### Best for LR on Housing
 with open("data.pkl", "rb") as f:
@@ -81,9 +83,10 @@ def tokenizer_porter(text):
 
 
 # NLP model is the lr_tfidf
-# nlp_model = pickle.load(open('Models/nlp_model.pkl','rb'))
-# nlp_vect = pickle.load(open('Models/nlp_vect.pkl','rb'))
-nlp_mod = pickle.load(open("Models/nlp_model.pkl", "rb"))
+
+
+with open("Models/nlp_model.pkl", "rb") as mod2:
+    nlp_mod = pickle.load(mod2)
 
 
 def get_wordnet_pos(treebank_tag):
