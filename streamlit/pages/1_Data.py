@@ -62,7 +62,8 @@ def housing(df):
     st.dataframe(df)
     st.divider()
     st.write(
-        "When I was exploring the data, I found that our outcome variable, *saleprice* was very skewed. This isn't good because a linear model requires non-skewed data to work properly!"
+        """When I was exploring the data, I found that our outcome variable, *saleprice* was very skewed. 
+        This isn't good because a linear model requires non-skewed data to work properly!"""
     )
     st.image(
         "/app/pictures/Housing_Normalization.png",
@@ -72,7 +73,8 @@ def housing(df):
     st.write(
         """
 - You can see below that when the data isn't normalized the errors aren't **random**
-    - This means your predictions are going to be wrong in a predictable way, and we can find and eliminate that pattern of error"""
+    - This means your predictions are going to be wrong in a predictable way, and we can find 
+    and eliminate that pattern of error"""
     )
     st.image("/app/pictures/Non_Normal_Residuals.png", use_column_width=True)
     st.write(
@@ -83,12 +85,14 @@ def housing(df):
     st.image("/app/pictures/Normalized_residuals.png", use_column_width=True)
     st.divider()
     st.write(
-        """I also tried to change different parameters of my best model, to see if I could fine tune it further, with limited success"""
+        """I also tried to change different parameters of my best model, to see if I could fine tune it 
+        further, with limited success"""
     )
     st.image("/app/pictures/LR_val_curve.png", use_column_width=True)
     st.write(
         """
-- You can see a slight slope in both lines (indicating better performance), but not by a practically significant amount"""
+- You can see a slight slope in both lines (indicating better performance), 
+but not by a practically significant amount"""
     )
     st.divider()
     st.subheader("Conclusions")
@@ -101,7 +105,8 @@ def housing(df):
 - Exter Qual
 - Overall Qual
     - To see how a single parameter impacts price, **multiply the parameter by $100,00**
-        - Ex. According to the model, **having central air** corresponds to an **increase in price by 0.243 hundred thousand dollars ($24,300)**.
+        - Ex. According to the model, **having central air** corresponds to an **increase in 
+        price by 0.243 hundred thousand dollars ($24,300)**.
     """
     )
 
@@ -124,7 +129,8 @@ def titanic(df1):
     | Age            | The passenger's age in years. Fractional values may exist for younger children. |
     | SibSp          | The number of siblings or spouses traveling with the passenger.                   |
     | Parch          | The number of parents or children traveling with the passenger.                   |
-    | Fare           | The price the passenger paid for their ticket.                                  || class_1 - class_3          | The Passenger's room class.                                    |   
+    | Fare           | The price the passenger paid for their ticket.                                  |
+    | class_1 - class_3 | The Passenger's room class.                                    |   
     """
     )
     st.divider()
@@ -134,7 +140,8 @@ def titanic(df1):
     )
     st.image("/app/pictures/Titanic_heatmap.png", use_column_width=True)
     st.write(
-        "- From the heatmap *survived* row, you can see that being **male** had a negative impact on survival, and that the **fare** you paid and the **class** you were in had either a negative or positive impact"
+        """- From the heatmap *survived* row, you can see that being **male** had a negative impact on survival, 
+        and that the **fare** you paid and the **class** you were in had either a negative or positive impact"""
     )
     st.write(
         """I also divided the passengers into male and female to look at the differences in survival"""
@@ -184,7 +191,8 @@ Overall the insights that I gained from this analysis were:
 - Being poor 
 - And being in 3rd or 2nd class 
              
-**Negatively** impacted odds of survival. These conclusions back up most of what we already knew about the sinking of the Titanic.
+**Negatively** impacted odds of survival. These conclusions back up most of what we already knew 
+about the sinking of the Titanic.
 """
     )
 
@@ -243,7 +251,8 @@ I used two models:
     st.subheader("Take-away")
     st.write(
         """
-- There aren't really any *insights* to take away from this dataset, **but**, we do now have a cool model that can analyze the sentiment of any text passed to it!
+- There aren't really any *insights* to take away from this dataset, **but**, we do now have a cool model 
+that can analyze the sentiment of any text passed to it!
 """
     )
 
@@ -256,7 +265,9 @@ def mnist():
     st.header("Convolutional Neural Network Using *Tensorflow*")
     st.markdown(
         """
-I used a Convolutional Neural Network (CNN) to classify the images contained in the MNIST dataset, using both Pytorch and Tensorflow. Here is a brief explanation of each layer in the CNN model and its role in the classification process:
+I used a Convolutional Neural Network (CNN) to classify the images contained in the MNIST dataset, 
+using both Pytorch and Tensorflow. Here is a brief explanation of each layer in the CNN model and 
+its role in the classification process:
 """
     )
 
@@ -265,42 +276,54 @@ I used a Convolutional Neural Network (CNN) to classify the images contained in 
     st.write(
         """
 ### 1. Flatten Layer
-- **What It Does**: This layer takes the image, which is originally 28 by 28 pixels, and stretches it out into a single line with 784 values. This step is needed so that the image data can be processed by the next layers.
+- **What It Does**: This layer takes the image, which is originally 28 by 28 pixels, and stretches 
+it out into a single line with 784 values. This step is needed so that the image data can be processed 
+by the next layers.
 """
     )
 
     st.write(
         """
 ### 2. Decision-Making Layer 1 (Dense Layer 1)
-- **What It Does**: This layer has 128 decision-making units (neurons). These units learn to detect important features from the stretched-out image data. They use a method called "ReLU" that helps the network identify complex patterns and relationships within the data.
+- **What It Does**: This layer has 128 decision-making units (neurons). These units learn to detect important 
+features from the stretched-out image data. They use a method called "ReLU" that helps the network identify complex 
+patterns and relationships within the data.
 """
     )
 
     st.write(
         """
 ### 3. Final Decision (Output Layer)
-- **What It Does**: The final layer has 10 units, one for each possible digit (0-9). This layer makes the final decision by processing the data into 10 possible outcomes (one for each digit). Although this layer uses a "linear" method at first, a step called "softmax" is applied later to convert the results into probabilities, which tells us how confident the model is in each choice.
+- **What It Does**: The final layer has 10 units, one for each possible digit (0-9). This layer makes the final 
+decision by processing the data into 10 possible outcomes (one for each digit). Although this layer uses a "linear" 
+method at first, a step called "softmax" is applied later to convert the results into probabilities, which tells us 
+how confident the model is in each choice.
 """
     )
     st.subheader("Model Compilation")
     st.write(
         """
 ### 1. Optimizer: Adam
-- **What It Does**: The Adam optimizer helps the model learn from the training data by adjusting the model's internal settings (weights) based on the data it sees. It combines the benefits of two other methods, which makes learning faster and more efficient.
+- **What It Does**: The Adam optimizer helps the model learn from the training data by adjusting the model's internal 
+settings (weights) based on the data it sees. It combines the benefits of two other methods, which makes learning 
+faster and more efficient.
 """
     )
 
     st.write(
         """
 ### 2. Loss Function: Sparse Categorical Crossentropy
-- **What It Does**: This function is like a guide that helps the model learn to make better predictions. It compares the model’s guesses with the correct answers (the target labels), tells the model how far off it is, and in which direction to go to get better.
+- **What It Does**: This function is like a guide that helps the model learn to make better predictions. It compares 
+the model’s guesses with the correct answers (the target labels), tells the model how far off it is, and in which 
+direction to go to get better.
 """
     )
 
     st.write(
         """
 ### 3. Evaluation Metric: Accuracy
-- **What It Does**: Accuracy tells us how well the model is performing by calculating the percentage of correctly guessed images. This metric tells us how well the model did overall, and at each step through its learning process.
+- **What It Does**: Accuracy tells us how well the model is performing by calculating the percentage of correctly 
+guessed images. This metric tells us how well the model did overall, and at each step through its learning process.
 """
     )
 
