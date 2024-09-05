@@ -29,6 +29,8 @@ st.divider()
 
 
 def image_show(image):
+    """Shows an image in with pyplot the correct way."""
+
     plt.figure()
     plt.imshow(image, cmap="gray_r")
     plt.colorbar()
@@ -37,6 +39,8 @@ def image_show(image):
 
 
 def class_to_one_hot(clas):
+    """Converts a 1,2, or 3 into binary. Used for one-hot-encoding the Class variable."""
+
     if clas == 1:
         return [1, 0, 0]
     if clas == 2:
@@ -50,6 +54,9 @@ if table_option == "Titanic":
     st.subheader("User Input Parameters")
 
     def user_input_features():
+        """Creates a Pandas dataframe out of the user input features, 
+        to feed into a predictive model."""
+
         male = st.sidebar.slider("Male (0 = No, 1 = Yes)", 0, 1, 0)
         age = st.sidebar.text_input("Enter your Age:", "20")
         sib = st.sidebar.text_input("Number of Siblings", 0, 15, 2)

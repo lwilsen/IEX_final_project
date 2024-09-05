@@ -24,6 +24,8 @@ if st.sidebar.button("Reset Page"):
 
 
 def housing(df):
+    """Creates the display for the Housing data selection."""
+
     st.write("---")
     st.write(
         """
@@ -112,6 +114,7 @@ but not by a practically significant amount"""
 
 
 def titanic(df1):
+    """Creates the display for the Titanic data selection."""
 
     st.subheader("Queried Data")
     st.dataframe(df1)
@@ -198,6 +201,8 @@ about the sinking of the Titanic.
 
 
 def preprocessor(text):
+    """Preprocesses text; removes everything that isn't a letter, and uncapitalizes everything."""
+
     text = re.sub("<[^>]*>", "", text)
     emoticons = re.findall(r"(?::|;|=)(?:-)?(?:\)|\(|D|P)", text)
     text = re.sub(r"[\W]+", " ", text.lower()) + " ".join(emoticons).replace("-", "")
@@ -206,6 +211,9 @@ def preprocessor(text):
 
 
 def movies(df2):
+    """Creates the display for the IMDB movie review data selection."""
+
+
     st.write("**IMDB Dataframe**")
     st.dataframe(df2)
     st.divider()
@@ -258,6 +266,9 @@ that can analyze the sentiment of any text passed to it!
 
 
 def mnist():
+    """Creates the display for the MNIST data selection."""
+
+
     st.write("**Examples of MNIST Handwritten Digits**")
     st.image(
         "/app/pictures/MNIST_digits.png", caption="MNIST DIGITS", use_column_width=True

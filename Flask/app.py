@@ -24,6 +24,7 @@ CORS(app)  # Need to research more about CORS (and how to use it properly)
 
 @app.route("/")
 def home():
+    """Checks to make sure the app is running properly."""
     return "Hello World! This is the home page of the app!"
 
 
@@ -31,6 +32,12 @@ def home():
 
 
 def query_database(qery):
+    """Queries the SQLite database that hosts all of the data used in the project.
+    
+    The three datasets are the Titanic dataset, the Ames Iowa housing dataset,
+    and the IMDB movie review dataset. The MNIST dataset couldn't be converted to a 
+    SQL database without more trouble than it was worth."""
+
     try:
         conn = sqlite3.connect("/app/final_project.db")
         cursor = conn.cursor()
@@ -79,6 +86,8 @@ porter = PorterStemmer()
 
 
 def tokenizer_porter(text):
+    """Creates a new tokenizer using the porter stemmer."""
+
     return [porter.stem(word) for word in text.split()]
 
 
@@ -90,6 +99,8 @@ with open("Models/nlp_model.pkl", "rb") as mod2:
 
 
 def get_wordnet_pos(treebank_tag):
+    """Tags each word with it's word type (noun, adjective, verb)."""
+
     if treebank_tag.startswith("J"):
         result = wordnet.ADJ
     if treebank_tag.startswith("V"):
@@ -104,6 +115,8 @@ def get_wordnet_pos(treebank_tag):
 
 
 def preprocess_text(text):
+    """Performs the preprocessing needed for sentiment analysis."""
+
     tokens = word_tokenize(text)
     pos_tags = nltk.pos_tag(tokens)
     lemmatizer = WordNetLemmatizer()
@@ -127,6 +140,8 @@ mnist_model = tf.keras.models.load_model("Models/mnist_model.keras")
 
 @app.route("/query", methods=["POST"])
 def query():
+    """Queries the database and provides the data back to the streamlit app."""
+
     try:
         query_response = request.json.get("query")
         if not query_response:
@@ -139,6 +154,8 @@ def query():
 
 @app.route("/predict_titanic", methods=["POST"])
 def predict_titanic():
+    """Predicts survival status given user input data."""
+
     data = request.json
     df = pd.DataFrame([data])
     prediction = svc_pipe.predict(df)
@@ -147,6 +164,9 @@ def predict_titanic():
 
 @app.route("/predict_housing", methods=["POST"])
 def predict_housing():
+    """Predicts house price given user input data."""
+
+
     data = request.json
     df = pd.DataFrame([data])
     prediction = ridge.predict(df)
@@ -155,6 +175,9 @@ def predict_housing():
 
 @app.route("/predict_sentiment", methods=["POST"])
 def predict_sentiment():
+    """Predicts the sentiment given user input text."""
+
+
     data = request.json
     text = data.get("text", "")
     processed_text = preprocess_text(text)
@@ -166,6 +189,8 @@ def predict_sentiment():
 
 @app.route("/predict_mnist", methods=["POST"])
 def predict_mnist():
+    """Predicts digit given user input data."""
+    
     data = request.json.get("image_data")
     processed_img = np.array(data).reshape((1, 28, 28, 1)) / 255.0
     prediction = mnist_model.predict(processed_img)
