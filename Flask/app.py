@@ -190,7 +190,7 @@ def predict_sentiment():
 @app.route("/predict_mnist", methods=["POST"])
 def predict_mnist():
     """Predicts digit given user input data."""
-    
+
     data = request.json.get("image_data")
     processed_img = np.array(data).reshape((1, 28, 28, 1)) / 255.0
     prediction = mnist_model.predict(processed_img)
