@@ -151,7 +151,7 @@ elif table_option == "Housing":
         st.write(f"**{formatted_value}**")
         adjusted_price = f"${exp_value * 1.56:,.2f}"
         st.write(
-            f"""**Adjusted for inflation** *(according to smartasset inflation calculator)*, 
+            f"""**Adjusted for inflation** *(according to smartasset inflation calculator)*,
             that would be around **{adjusted_price}** today."""
         )
 
