@@ -1,3 +1,5 @@
+"""Used for creation of a streamlit frontend."""
+
 from streamlit_drawable_canvas import st_canvas
 import numpy as np
 import pandas as pd

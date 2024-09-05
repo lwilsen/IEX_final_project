@@ -1,3 +1,5 @@
+"""Used for creation of a streamlit frontend."""
+
 import re
 
 import requests

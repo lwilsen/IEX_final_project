@@ -1,3 +1,6 @@
+"""Importing SQLite3 for the database creation, and pandas to convert csv's
+    into something that SQLite3 can work with."""
+
 import sqlite3
 import pandas as pd
 

@@ -1,3 +1,5 @@
+"""Importing requests to perform a test request to a flask API."""
+
 import requests
 
 URL = "http://localhost:8000/query"

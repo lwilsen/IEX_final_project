@@ -1,3 +1,5 @@
+"""Used for the creation of a tokenizer for nlp processing."""
+
 from nltk.stem import PorterStemmer
 
 porter = PorterStemmer()

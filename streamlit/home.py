@@ -1,3 +1,5 @@
+"""Used for creation of a streamlit frontend."""
+
 import streamlit as st
 
 st.title("My Cumulative Data Science App")

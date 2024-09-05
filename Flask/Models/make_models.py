@@ -1,3 +1,7 @@
+"""Pickle imported to load models, sklearn imported to create models, nltk and joblib
+    imported for nlp model creation, and LogTransformer imported to perform a log
+    transformation on data."""
+
 import pickle
 
 from sklearn.pipeline import Pipeline
