@@ -21,4 +21,4 @@ jobs:
 
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py') --disable=C0114,C0115,C0116,E0401 --max-line-length=120  # Disable missing docstring warnings
+        pylint $(git ls-files '*.py') --disable=C0114,C0115,E0401 --max-line-length=120  # Disable missing docstring warnings
