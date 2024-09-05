@@ -37,6 +37,7 @@ def query_database(qery):
         cursor.execute(qery)
         columns = [description[0] for description in cursor.description]
         data = cursor.fetchall()
+        
         conn.close()
         return {"Columns": columns, "Data": data}
     except sqlite3.Error as e:
@@ -87,15 +88,16 @@ nlp_mod = pickle.load(open("Models/nlp_model.pkl", "rb"))
 
 def get_wordnet_pos(treebank_tag):
     if treebank_tag.startswith("J"):
-        return wordnet.ADJ
+        result = wordnet.ADJ
     if treebank_tag.startswith("V"):
-        return wordnet.VERB
+        result = wordnet.VERB
     if treebank_tag.startswith("N"):
-        return wordnet.NOUN
+        result = wordnet.NOUN
     if treebank_tag.startswith("R"):
-        return wordnet.ADV
-    return wordnet.NOUN
-
+        result = wordnet.ADV
+    else:
+        result = wordnet.NOUN
+    return result
 
 
 def preprocess_text(text):
