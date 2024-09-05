@@ -164,7 +164,7 @@ def predict_sentiment():
 @app.route("/predict_mnist", methods=["POST"])
 def predict_mnist():
     data = request.json.get("image_data")
-    processed_img = np.array(data).reshape(1, 28, 28, 1) / 255.0
+    processed_img = np.array(data).reshape((1, 28, 28, 1)) / 255.0
     prediction = mnist_model.predict(processed_img)
     predicted_digit = np.argmax(prediction)
     return jsonify({"digit": predicted_digit.tolist(), "weights": prediction.tolist()})
