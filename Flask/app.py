@@ -37,7 +37,7 @@ def query_database(qery):
         cursor.execute(qery)
         columns = [description[0] for description in cursor.description]
         data = cursor.fetchall()
-        
+
         conn.close()
         return {"Columns": columns, "Data": data}
     except sqlite3.Error as e:
