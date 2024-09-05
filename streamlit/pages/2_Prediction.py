@@ -8,6 +8,10 @@ import nltk
 
 import streamlit as st
 
+st.set_page_config(
+    page_title="2_Prediction"
+)
+
 nltk.download("averaged_perceptron_tagger_eng")
 
 if st.sidebar.button("Reset Page"):
@@ -36,10 +40,10 @@ def image_show(image):
     plt.show()
 
 
-def class_to_one_hot(Class):
-    if Class == 1:
+def class_to_one_hot(clas):
+    if clas == 1:
         return [1, 0, 0]
-    if Class == 2:
+    if clas == 2:
         return [0, 1, 0]
     return [0, 0, 1]
 
@@ -50,24 +54,24 @@ if table_option == "Titanic":
     st.subheader("User Input Parameters")
 
     def user_input_features():
-        Male = st.sidebar.slider("Male (0 = No, 1 = Yes)", 0, 1, 0)
-        Age = st.sidebar.text_input("Enter your Age:", "20")
-        Sib = st.sidebar.text_input("Number of Siblings", 0, 15, 2)
-        Sp = st.sidebar.slider("Spouse (0 = No, 1 = Yes)", 0, 1, 0)
-        SibSp = int(Sib) + Sp
-        Par = st.sidebar.text_input("Number of Parents:", "2")
+        male = st.sidebar.slider("Male (0 = No, 1 = Yes)", 0, 1, 0)
+        age = st.sidebar.text_input("Enter your Age:", "20")
+        sib = st.sidebar.text_input("Number of Siblings", 0, 15, 2)
+        sp = st.sidebar.slider("Spouse (0 = No, 1 = Yes)", 0, 1, 0)
+        sibSp = int(sib) + sp
+        par = st.sidebar.text_input("Number of Parents:", "2")
         ch = st.sidebar.text_input("Number of Children", 0, 15, 0)
-        Parch = int(Par) + int(ch)
-        Fare = st.sidebar.text_input("Fare", "20")
-        Fare = int(Fare)
-        Class = st.sidebar.slider("Class", 1, 3, 1)
-        class_1, class_2, class_3 = class_to_one_hot(Class)
+        parch = int(par) + int(ch)
+        fare = st.sidebar.text_input("Fare", "20")
+        fare = int(fare)
+        clas = st.sidebar.slider("Class", 1, 3, 1)
+        class_1, class_2, class_3 = class_to_one_hot(clas)
         data = {
-            "Male": Male,
-            "Age": Age,
-            "SibSp": SibSp,
-            "Parch": Parch,
-            "Fare": Fare,
+            "Male": male,
+            "Age": age,
+            "SibSp": sibSp,
+            "Parch": parch,
+            "Fare": fare,
             "class_1": class_1,
             "class_2": class_2,
             "class_3": class_3,
@@ -118,7 +122,7 @@ elif table_option == "Housing":
     )
 
     # Convert categorical data to numerical for consistency in modeling
-    central_air_numeric = 1 if central_air == "Yes" else 0
+    CENTRAL_AIR_NUMERIC = 1 if central_air == "Yes" else 0
     exter_qual_mapping = {"Poor": 1, "Fair": 2, "Good": 3, "Very Good": 4}
     exter_qual_numeric = exter_qual_mapping[exter_qual]
 
@@ -129,7 +133,7 @@ elif table_option == "Housing":
             "Overall Cond": [overall_cond],
             "Exter Qual": [exter_qual_numeric],
             "Total Bsmt SF": [total_bsmt_sf],
-            "Central Air": [central_air_numeric],
+            "Central Air": [CENTRAL_AIR_NUMERIC],
             "Gr Liv Area": [gr_liv_area],
             "Fireplaces": [fireplaces],
         }
@@ -157,11 +161,11 @@ elif table_option == "Housing":
 
 elif table_option == "Movie":
     st.write("Text Sentiment Prediction!")
-    text = "This sentiment is negative, as an example."
-    text = st.text_area("Enter a sentence for sentiment testing:", value=text)
+    TEXT = "This sentiment is negative, as an example."
+    TEXT = st.text_area("Enter a sentence for sentiment testing:", value=TEXT)
     if st.button("Predict"):
         response = requests.post(
-            "http://flask_route:5001/predict_sentiment", json={"text": text}, timeout=15
+            "http://flask_route:5001/predict_sentiment", json={"text": TEXT}, timeout=15
         )
         result = response.json()
         sentiment = result["sentiment"]

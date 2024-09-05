@@ -60,13 +60,13 @@ with open("data.pkl", "rb") as f:
 housing_df["Log_saleprice"] = np.log(housing_df["SalePrice"])
 housing_df = housing_df.iloc[:, list(range(0, 7)) + [8]]
 
-log_target = "Log_saleprice"
-log_feats = housing_df.columns[(housing_df.columns != log_target)]
+LOG_TARGET = "Log_saleprice"
+log_feats = housing_df.columns[(housing_df.columns != LOG_TARGET)]
 # Now housing only has feature columns and log target column
 
 X_log = housing_df[log_feats]
 
-y_log = housing_df[log_target]
+y_log = housing_df[LOG_TARGET]
 
 Xl_train, Xl_test, yl_train, yl_test = train_test_split(
     X_log, y_log, test_size=0.3, random_state=123

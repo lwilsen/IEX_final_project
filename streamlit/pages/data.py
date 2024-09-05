@@ -8,6 +8,10 @@ import nltk
 
 import streamlit as st
 
+st.set_page_config(
+    page_title = "1_Data"
+)
+
 nltk.download("punkt_tab")
 nltk.download("stopwords")
 st.title("Data Exploration")
@@ -345,21 +349,21 @@ data_option = st.radio(
     "Select Data:", ("Housing", "Titanic", "Movie", "MNIST"), key="data_option"
 )
 
-query = ""
+QUERY = ""
 if data_option == "Titanic":
-    query = "SELECT * FROM titanic LIMIT 30;"
+    QUERY = "SELECT * FROM titanic LIMIT 30;"
 elif data_option == "Housing":
-    query = "SELECT * FROM housing LIMIT 30;"
+    QUERY = "SELECT * FROM housing LIMIT 30;"
 elif data_option == "Movie":
-    query = "SELECT * FROM movies LIMIT 30;"
+    QUERY = "SELECT * FROM movies LIMIT 30;"
 elif data_option == "MNIST":
-    query = "-- MNIST is non-queriable from the SQL database"
+    QUERY = "-- MNIST is non-queriable from the SQL database"
 
-query = st.text_area(label="**Enter your SQL query here:**", value=query)
+QUERY = st.text_area(label="**Enter your SQL query here:**", value=QUERY)
 
 if st.button("Submit"):
     response = requests.post(
-        "http://flask_route:5001/query", json={"query": query}, timeout=10
+        "http://flask_route:5001/query", json={"query": QUERY}, timeout=10
     )
     if response.status_code == 200:
         try:

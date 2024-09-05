@@ -1,5 +1,9 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="Home"
+)
+
 st.title("My Cumulative Data Science App")
 st.write("Luke Wilsen")
 
