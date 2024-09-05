@@ -58,7 +58,7 @@ if table_option == "Titanic":
         age = st.sidebar.text_input("Enter your Age:", "20")
         sib = st.sidebar.text_input("Number of Siblings", 0, 15, 2)
         sp = st.sidebar.slider("Spouse (0 = No, 1 = Yes)", 0, 1, 0)
-        sibSp = int(sib) + sp
+        sibsp = int(sib) + sp
         par = st.sidebar.text_input("Number of Parents:", "2")
         ch = st.sidebar.text_input("Number of Children", 0, 15, 0)
         parch = int(par) + int(ch)
@@ -69,7 +69,7 @@ if table_option == "Titanic":
         data = {
             "Male": male,
             "Age": age,
-            "SibSp": sibSp,
+            "SibSp": sibsp,
             "Parch": parch,
             "Fare": fare,
             "class_1": class_1,
