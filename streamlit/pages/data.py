@@ -8,10 +8,6 @@ import nltk
 
 import streamlit as st
 
-st.set_page_config(
-    page_title = "1_Data"
-)
-
 nltk.download("punkt_tab")
 nltk.download("stopwords")
 st.title("Data Exploration")

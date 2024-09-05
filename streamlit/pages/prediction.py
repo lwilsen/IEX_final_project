@@ -8,10 +8,6 @@ import nltk
 
 import streamlit as st
 
-st.set_page_config(
-    page_title="2_Prediction"
-)
-
 nltk.download("averaged_perceptron_tagger_eng")
 
 if st.sidebar.button("Reset Page"):
