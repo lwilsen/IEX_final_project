@@ -13,8 +13,10 @@ Below is a brief summary of each dataset, and some practical applications.
 
 ### Data
 - **Titanic**: Passenger data from the Titanic disaster, used for binary classification (survived or not).
-- **Ames Housing**: Housing data from Ames, Iowa, between 2006 and 2010. I used different types of regression to predict house prices.
-- **IMDB Movie Reviews**: Sentiment analysis of movie reviews, used for binary text classification (positive or negative).
+- **Ames Housing**: Housing data from Ames, Iowa, between 2006 and 2010. I used different types of regression to 
+predict house prices.
+- **IMDB Movie Reviews**: Sentiment analysis of movie reviews, used for binary text classification 
+(positive or negative).
 - **MNIST Digits**: Handwritten digit images (0-9), used for image classification.
             
 ### Prediction
