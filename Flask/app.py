@@ -6,7 +6,6 @@ import pickle
 from flask import Flask, request, jsonify
 
 from flask_cors import CORS
-import tensorflow as tf
 import numpy as np
 from nltk.tokenize import word_tokenize
 from nltk.corpus import wordnet
