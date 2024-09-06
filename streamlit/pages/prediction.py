@@ -4,7 +4,7 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 import pandas as pd
 import requests
-import cv2
+from cv2 import cv2
 import matplotlib.pyplot as plt
 import nltk
 
@@ -181,7 +181,7 @@ elif table_option == "Movie":
 
 elif table_option == "MNIST":
     st.write("Handwritten Digit Prediction!")
-    canvas_result = st_canvas(
+    CanvasResult = st_canvas(
         fill_color="rgba(1,0,0,0.3)",
         stroke_width=10,
         stroke_color="#ffffff",
@@ -193,9 +193,9 @@ elif table_option == "MNIST":
         key="canvas",
     )
     if st.button("Predict"):
-        if canvas_result.image_data is not None:
+        if CanvasResult.image_data is not None:
             # input_array = np.array(canvas_result.image_data)
-            input_image = cv2.cvtColor(canvas_result.image_data, cv2.COLOR_RGBA2BGR)
+            input_image = cv2.cvtColor(CanvasResult.image_data, cv2.COLOR_RGBA2BGR)
 
             gray_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2GRAY)
 
