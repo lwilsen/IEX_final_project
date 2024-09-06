@@ -1,0 +1,17 @@
+pylint 
+fastapi 
+pydantic 
+streamlit
+requests
+pandas
+nltk
+streamlit
+scikit-learn
+joblib
+flask
+flask_cors
+tensorflow
+numpy
+streamlit_drawable_canvas
+opencv-python
+matplotlib
