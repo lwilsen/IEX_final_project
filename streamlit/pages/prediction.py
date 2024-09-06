@@ -4,7 +4,7 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 import pandas as pd
 import requests
-from cv2 import cv2
+import cv2
 import matplotlib.pyplot as plt
 import nltk
 
