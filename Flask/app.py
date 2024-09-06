@@ -15,6 +15,7 @@ import nltk
 import pandas as pd
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
+import keras
 
 nltk.download("punkt_tab")
 nltk.download("averaged_perceptron_tagger_eng")
@@ -135,7 +136,7 @@ nlp_mod.set_params(vect__tokenizer=tokenizer_porter)
 
 ### MNIST model
 
-mnist_model = tf.keras.models.load_model("Models/mnist_model.keras")
+mnist_model = keras.models.load_model("Models/mnist_model.keras")
 
 # Functions that recieve POST requests
 
