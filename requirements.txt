@@ -13,5 +13,4 @@ flask_cors
 tensorflow
 numpy
 streamlit_drawable_canvas
-opencv-python
 matplotlib
