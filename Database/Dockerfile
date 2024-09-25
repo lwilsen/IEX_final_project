@@ -1,15 +1,10 @@
 FROM python:3.12-slim
 
-RUN useradd -m nonrootuser && \
-    apt-get update && \
-    apt-get install -y sqlite3 && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y sqlite3
 
-USER nonrootuser
+WORKDIR /app
 
-WORKDIR /home/nonrootuser
-
-COPY . /home/nonrootuser/app
+COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 

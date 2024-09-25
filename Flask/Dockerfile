@@ -1,12 +1,8 @@
 FROM python:3.12-slim
 
-RUN useradd -m nonrootuser
+WORKDIR /app
 
-USER nonrootuser
-
-WORKDIR /home/nonrootuser
-
-COPY . /home/nonrootuser/app
+COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt && \
     python -m nltk.downloader averaged_perceptron_tagger
